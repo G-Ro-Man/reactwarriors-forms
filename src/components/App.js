@@ -16,7 +16,7 @@ export default class App extends React.Component {
     super()
 
     this.state = {
-      step: 2,
+      step: 1,
       values: {
         firstname: '',
         lastname: '',
@@ -42,7 +42,6 @@ export default class App extends React.Component {
         },
       }))
     }
-    // const { [name]: _, ...errors } = this.state.errors
     this.setState((state) => ({
       values: {
         ...this.state.values,
