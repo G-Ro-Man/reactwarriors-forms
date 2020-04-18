@@ -1,68 +1,34 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Выполненное задание.
 
-## Available Scripts
+Задание. Форма
 
-In the project directory, you can run:
+Форма с 4 шагами: 3 шага заполнение данных, последняя отображение заполненныx данных
 
-### `npm start`
+Шаг 1 (Basic)
+Поля	Тип инпута	Валидация
+firstname	text	Must be 5 characters or more
+lastname	text	Must be 4 characters or more
+password	password	Must be 6 characters or more
+repeatPassword	password	Must be equal password
+gender	radio	Required
+Шаг 2 (Contacts)
+Поля	Тип инпута	Валидация
+email	text	Invalid email address
+mobile	text	Invalid mobile
+country	select	Required
+city	select	Required
+При выборе опредленной страны должны отображаться список городов только этой страны, связь по id
+Шаг 3 (Avatar)
+Поля	Тип инпута	Валидация
+avatar	file	Required
+После загрузки аватара пользователя должно показывать его превью ("img src='base64'")
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+На каждом шаге (кроме 4-го шага) должны отображаться кнопки Назад - Вперед
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+При нажатии на кнопку Вперед должна проходить валидация:
 
-### `npm test`
+если валидно, показывать поля следующего шага
+если невлидно, показываться ошибки под полями и подсвечивать border
+При нажатии на кнопку Назад должно отображаться предыдущий шаг
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Последний 4 шаг это оторажение всех полей, которые ввел пользователь
