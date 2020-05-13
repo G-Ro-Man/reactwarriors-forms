@@ -1,17 +1,14 @@
 import React from 'react'
 import countries from '../../data/countries'
 import cities from '../../data/cities'
-import Field from '../fields/Field'
-import Select from '../fields/Select'
+import Field from '../fields/field'
+import Select from '../fields/select'
 
 /*
-email	text	Invalid email address
-mobile	text	Invalid mobile
-country	select	Required
-city	select	Required
+общий селект
 */
 
-const Step2 = (props) => {
+const Contacts = (props) => {
   const { values, errors, onChange } = props
 
   const getOptionsItems = (items) => {
@@ -23,16 +20,14 @@ const Step2 = (props) => {
   }
 
   const getOptionsItemsCities = (cities) => {
-    const filteredCities = Object.entries(cities).filter(
-      (el) => el[1].country === Number(values.country)
-    )
-
-    return getOptionsItems(
-      filteredCities.map(([id, city]) => ({
+    const filteredCities = Object.entries(cities)
+      .filter((el) => el[1].country === Number(values.country))
+      .map(([id, city]) => ({
         id,
         name: city.name,
       }))
-    )
+
+    return getOptionsItems(filteredCities)
   }
 
   return (
@@ -66,6 +61,7 @@ const Step2 = (props) => {
         value={values.country}
         onChange={onChange}
         error={errors.country}
+        defaultOptionLabel={'Choose your country'}
         options={getOptionsItems(countries)}
       />
 
@@ -77,10 +73,11 @@ const Step2 = (props) => {
         value={values.city}
         onChange={onChange}
         error={errors.city}
+        defaultOptionLabel={'Choose your city'}
         options={getOptionsItemsCities(cities)}
       />
     </div>
   )
 }
 
-export default Step2
+export default Contacts

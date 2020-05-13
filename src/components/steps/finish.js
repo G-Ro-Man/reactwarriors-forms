@@ -2,11 +2,10 @@ import React from 'react'
 import countries from '../../data/countries'
 import cities from '../../data/cities'
 
-const Step4 = (props) => {
+const Finish = (props) => {
   const { values } = props
-  const selectedCountry = countries.find(
-    (item) => item.id === Number(values.country) || {}
-  )
+  const selectedCountry =
+    countries.find((item) => item.id === Number(values.country)) || {}
 
   return (
     <div className="card-body">
@@ -30,4 +29,4 @@ const Step4 = (props) => {
   )
 }
 
-export default Step4
+export default Finish

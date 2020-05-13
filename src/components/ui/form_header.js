@@ -14,7 +14,7 @@ const FormHeader = (props) => {
               : 'active'
           }`}
         >
-          Step 1
+          Basic
         </li>
         <li
           className={`nav-item nav-link font-weight-bold ${
@@ -25,7 +25,7 @@ const FormHeader = (props) => {
               : 'active'
           }`}
         >
-          Step 2
+          Contacts
         </li>
         <li
           className={`nav-item nav-link font-weight-bold ${
@@ -36,7 +36,7 @@ const FormHeader = (props) => {
               : 'active'
           }`}
         >
-          Step 3
+          Avatar
         </li>
         <li
           className={`nav-item nav-link font-weight-bold ${
@@ -47,7 +47,7 @@ const FormHeader = (props) => {
               : 'active'
           }`}
         >
-          Step 4
+          Finish
         </li>
       </nav>
     </div>

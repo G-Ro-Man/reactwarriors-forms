@@ -1,15 +1,7 @@
 import React from 'react'
-import Field from '../fields/Field'
+import Field from '../fields/field'
 
-/*
-firstname	text	Must be 5 characters or more
-lastname	text	Must be 4 characters or more
-password	password	Must be 6 characters or more
-repeatPassword	password	Must be equal password
-gender	radio	Required
-*/
-
-const Step1 = (props) => {
+const Basic = (props) => {
   const { values, errors, onChange } = props
 
   return (
@@ -98,4 +90,4 @@ const Step1 = (props) => {
   )
 }
 
-export default Step1
+export default Basic

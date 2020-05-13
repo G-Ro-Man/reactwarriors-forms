@@ -1,11 +1,14 @@
 import React from 'react'
-import ClassNames from 'classnames'
+import classNames from 'classnames'
+
+import DefaultUserMaleIcon from './img/user-male-icon.png'
+import DefaultUserFemaleIcon from './img/user-female-icon.png'
 
 /*
 avatar	file	Required
 */
 
-const Step3 = (props) => {
+const Avatar = (props) => {
   const { values, errors, onChange } = props
 
   const onChangeAvatar = (event) => {
@@ -23,21 +26,27 @@ const Step3 = (props) => {
     reader.readAsDataURL(event.target.files[0])
   }
 
+  const getDefaultIcon = (gender) => {
+    switch (gender) {
+      case 'male':
+        return DefaultUserMaleIcon
+      case 'female':
+        return DefaultUserFemaleIcon
+      default:
+        return null
+    }
+  }
+
   return (
     <div className="card-body">
       <div className="form-group">
         <img
-          src={
-            values.avatar ||
-            (values.gender === 'male'
-              ? '../../img/user-male-icon.png'
-              : '../../img/user-female-icon.png')
-          }
+          src={values.avatar || getDefaultIcon(values.gender)}
           className="w-100 mb-4 p-2"
           alt="avatar"
         />
         <div
-          className={ClassNames('input-group mb-3', { invalid: errors.avatar })}
+          className={classNames('input-group mb-3', { invalid: errors.avatar })}
         >
           <div className="input-group-prepend">
             <span className="input-group-text" id="inputGroupFileAddon01">
@@ -66,4 +75,4 @@ const Step3 = (props) => {
   )
 }
 
-export default Step3
+export default Avatar

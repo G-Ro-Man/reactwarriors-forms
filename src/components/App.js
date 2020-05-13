@@ -2,20 +2,20 @@ import React from 'react'
 import FormHeader from './ui/form_header'
 import FormFooter from './ui/form_footer'
 
-import Step1 from './steps/step_1'
-import Step2 from './steps/step_2'
-import Step3 from './steps/step_3'
-import Step4 from './steps/step_4'
+import Basic from './steps/basic'
+import Contacts from './steps/contacts'
+import Avatar from './steps/avatar'
+import Finish from './steps/finish'
 
 // regexp
-const regExpEmail = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
-const regExpMobile = /^\d{10,12}$/
+const RegExpEmail = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
+const RegExpMobile = /^\d{10,12}$/
 
 export default class App extends React.Component {
   constructor() {
     super()
 
-    this.state = {
+    this.initialState = {
       step: 1,
       values: {
         firstname: '',
@@ -31,6 +31,7 @@ export default class App extends React.Component {
       },
       errors: {},
     }
+    this.state = this.initialState
   }
 
   onChange = (event) => {
@@ -38,13 +39,14 @@ export default class App extends React.Component {
     if (name === 'country') {
       this.setState((state) => ({
         values: {
+          ...state.values,
           city: state.values.city = '',
         },
       }))
     }
     this.setState((state) => ({
       values: {
-        ...this.state.values,
+        ...state.values,
         [name]: value,
       },
     }))
@@ -91,11 +93,11 @@ export default class App extends React.Component {
         break
 
       case 2:
-        if (!regExpEmail.test(email)) {
+        if (!RegExpEmail.test(email)) {
           errors.email = 'Invalid email address'
         }
 
-        if (!regExpMobile.test(mobile)) {
+        if (!RegExpMobile.test(mobile)) {
           errors.mobile = 'Invalid mobile'
         }
         if (!country) {
@@ -142,27 +144,7 @@ export default class App extends React.Component {
   }
   reset = (event) => {
     event.preventDefault()
-    this.setState({
-      step: 1,
-      values: {
-        firstname: '',
-        lastname: '',
-        password: '',
-        confirmPassword: '',
-        country: '2',
-        city: '2',
-        gender: 'male',
-        agree: true,
-        avatar: '',
-        age: 16,
-      },
-      errors: {
-        firstname: '',
-        password: '',
-        confirmPassword: '',
-        age: false,
-      },
-    })
+    this.setState(this.initialState)
   }
 
   onSubmit = (event) => {
@@ -170,38 +152,30 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { step } = this.state
+    const { step, values, errors } = this.state
 
     return (
       <div className="form-container card">
         <form className="form">
-          <FormHeader step={this.state.step} />
+          <FormHeader step={step} />
 
           {step === 1 && (
-            <Step1
-              values={this.state.values}
-              errors={this.state.errors}
-              onChange={this.onChange}
-            />
+            <Basic values={values} errors={errors} onChange={this.onChange} />
           )}
           {step === 2 && (
-            <Step2
-              values={this.state.values}
-              errors={this.state.errors}
+            <Contacts
+              values={values}
+              errors={errors}
               onChange={this.onChange}
             />
           )}
           {step === 3 && (
-            <Step3
-              values={this.state.values}
-              errors={this.state.errors}
-              onChange={this.onChange}
-            />
+            <Avatar values={values} errors={errors} onChange={this.onChange} />
           )}
-          {step === 4 && <Step4 values={this.state.values} />}
+          {step === 4 && <Finish values={values} />}
 
           <FormFooter
-            step={this.state.step}
+            step={step}
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             reset={this.reset}

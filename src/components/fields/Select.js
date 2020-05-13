@@ -2,7 +2,16 @@ import React from 'react'
 import ClassNames from 'classnames'
 
 const Select = (props) => {
-  const { id, labelText, name, value, onChange, error, options } = props
+  const {
+    id,
+    labelText,
+    name,
+    value,
+    onChange,
+    error,
+    defaultOptionLabel,
+    options,
+  } = props
 
   return (
     <div className="form-group">
@@ -15,7 +24,7 @@ const Select = (props) => {
         onChange={onChange}
       >
         <option value="" disabled>
-          Choose your {name}
+          {defaultOptionLabel}
         </option>
         {options}
       </select>
