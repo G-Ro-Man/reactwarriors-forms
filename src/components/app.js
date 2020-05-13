@@ -1,6 +1,6 @@
 import React from 'react'
-import FormHeader from './ui/form_header'
-import FormFooter from './ui/form_footer'
+import FormHeader from './ui/form-header'
+import FormFooter from './ui/form-footer'
 
 import Basic from './steps/basic'
 import Contacts from './steps/contacts'
