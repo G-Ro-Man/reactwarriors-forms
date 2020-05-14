@@ -1,57 +1,31 @@
-import React from 'react'
+import React, { Component } from 'react'
+import classNames from 'classnames'
 
-const FormHeader = (props) => {
-  const { step } = props
-  return (
-    <div className="card-header">
-      <nav className="nav nav-pills pill-success nav-fill">
-        <li
-          className={`nav-item nav-link font-weight-bold ${
-            step !== 1
-              ? step > 1
-                ? 'border-bottom text-success border-success'
-                : 'disabled'
-              : 'active'
-          }`}
-        >
-          Basic
-        </li>
-        <li
-          className={`nav-item nav-link font-weight-bold ${
-            step !== 2
-              ? step > 2
-                ? 'border-bottom text-success border-success'
-                : 'disabled'
-              : 'active'
-          }`}
-        >
-          Contacts
-        </li>
-        <li
-          className={`nav-item nav-link font-weight-bold ${
-            step !== 3
-              ? step > 3
-                ? 'border-bottom text-success border-success'
-                : 'disabled'
-              : 'active'
-          }`}
-        >
-          Avatar
-        </li>
-        <li
-          className={`nav-item nav-link font-weight-bold ${
-            step !== 4
-              ? step > 4
-                ? 'border-bottom text-success border-success'
-                : 'disabled'
-              : 'active'
-          }`}
-        >
-          Finish
-        </li>
-      </nav>
-    </div>
-  )
+const stepsNames = ['Basic', 'Contacts', 'Avatar', 'Finish']
+
+export default class FormHeader extends Component {
+  render() {
+    const { step } = this.props
+
+    const className = (index) => {
+      return classNames('nav-item nav-link font-weight-bold', {
+        active: step === index + 1,
+        'border-bottom text-success border-success': step > index + 1,
+      })
+    }
+
+    return (
+      <div className="card-header">
+        <nav className="nav nav-pills pill-success nav-fill">
+          {stepsNames.map((stepName, index) => {
+            return (
+              <li key={index} className={className(index)}>
+                {stepName}
+              </li>
+            )
+          })}
+        </nav>
+      </div>
+    )
+  }
 }
-
-export default FormHeader
